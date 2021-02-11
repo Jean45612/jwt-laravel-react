@@ -4,11 +4,14 @@ import swal from '../services/swal.js'
 
 export class Register extends Component {
 
-    state = {
-        email: null,
-        password: null,
-        password_confirmation: null,
-        rol_id: 1
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: null,
+            password: null,
+            password_confirmation: null,
+            rol_id: 1
+        }
     }
 
     handleSubmit = e => {
