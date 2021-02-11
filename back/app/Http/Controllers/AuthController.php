@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Login;
+use App\Http\Requests\Usuario;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -66,6 +68,15 @@ class AuthController extends Controller
         $this->guard()->logout();
 
         return response()->json(['message' => 'Cerro sesión exitosamente.']);
+    }
+
+    public function register(Usuario $request)
+    {
+        $user = User::create($request->all());
+
+        event(new Registered($user));
+
+        return response()->json('El usuario fue registrado exitosamente');
     }
 
     /**

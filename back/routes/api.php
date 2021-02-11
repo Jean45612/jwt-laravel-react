@@ -39,6 +39,7 @@ Route::get('/config_cache', function () {
 });
 
 Route::post('login', 'AuthController@login');
+Route::post('register', 'AuthController@register');
 Route::post('refresh', 'AuthController@refresh');
 Route::post('forgotEmail', 'ResetPasswordController@forgot');
 Route::post('resetEmail', 'ResetPasswordController@reset')->name('password.reset');

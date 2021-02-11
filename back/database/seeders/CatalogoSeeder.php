@@ -24,7 +24,7 @@ class CatalogoSeeder extends Seeder
 
         Rol::insert($roles);
 
-        $user = User::create(['email' => 'jluiscoba1989@gmail.com', 'password' => 'admin', 'rol_id' => 1]);
+        $user = User::create(['email' => 'jpacostatomaylla@gmail.com', 'password' => 'admin', 'rol_id' => 1]);
 
         $user->markEmailAsVerified();
 
