@@ -1,33 +1,33 @@
 * {
-	margin: 0;
-	padding: 0;
-	font-size: 13px;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  box-sizing: border-box;
 }
 
 html,
 body {
-	height: 100% !important;
+  height: 100% !important;
 }
 
 body {
-	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .cursor {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 a:hover {
-	text-decoration: none;
-	cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .card-header {
-	text-align: center;
-	color: gray;
-	background-color: #fff !important;
+  text-align: center;
+  color: gray;
+  background-color: #fff !important;
 }
 
 .h1,
@@ -35,10 +35,15 @@ h2,
 h3,
 h4,
 h5 {
-	margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .button-none {
-	border: none;
-	background: none;
+  border: none;
+  background: none;
+}
+
+.alert {
+  margin-bottom: 0 !important;
+  margin-top: 10px;
 }
