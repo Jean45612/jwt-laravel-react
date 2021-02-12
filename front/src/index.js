@@ -5,6 +5,9 @@ import App from './App';
 import './assets/css/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+////CARGO EL TRADUCTOR PARA EL VALIDADOR
+import './locale/es.js'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
