@@ -22,25 +22,43 @@ export class Register extends Component {
                 password_confirmation: '',
                 rol_id: 1
             },
-            errors: {}
+            errors: null,
+            error: null
         }
     }
 
     handleSubmit = e => {
         e.preventDefault();
 
+        this.limpiar();
+
         if (this.validator.allValid()) {
             api.post('register', this.state.form).then(data => {
-                swal.alerta(data, 'success')
+                swal.alerta(data, 'success');
+                this.props.history.push('/login');
             }, error => {
-                this.setState({
-                    errors: error.data.errors
-                });
+                if (error.data.errors) {
+                    this.setState({
+                        errors: error.data.errors
+                    });
+                } else {
+                    this.setState({
+                        error: error.data.error
+                    });
+                }
+
             });
         } else {
             this.validator.showMessages();
         }
 
+    }
+
+    limpiar = () => {
+        this.setState({
+            errors: null,
+            error: null
+        });
     }
 
     onChange = e => {
@@ -83,7 +101,7 @@ export class Register extends Component {
                                 </div>
                             </div>
 
-                            <Error errors={this.state.errors} />
+                            <Error errors={this.state.errors} error={this.state.error} />
 
                             <div className="form-group row">
                                 <div className="col-12">
