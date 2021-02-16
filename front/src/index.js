@@ -4,6 +4,7 @@ import App from './App';
 
 import './assets/css/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 ////CARGO EL TRADUCTOR PARA EL VALIDADOR
 import './locale/es.js'
