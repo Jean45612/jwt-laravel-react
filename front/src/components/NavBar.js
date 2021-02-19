@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import token from '../services/token'
 import api from '../services/api'
@@ -13,34 +13,40 @@ const noLogueado = <React.Fragment>
     </li>
 </React.Fragment>;
 
-const logueado = <li className="nav-item dropdown">
-    <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        NAME USUARIO
-    </a>
+const Logueado = () => {
+    const logout = useLogout()
 
-    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownPerfil">
-        <a className="dropdown-item" href="#">Mi Perfil</a>
-        <a className="dropdown-item" href="#" onClick={() => Logout()}>Cerrar sesión</a>
-    </div>
-</li>;
+    return (
+        <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {token.getUser().email}
+          </a>
 
-const Logout = () => {
-    const history = useHistory();////EL ERROR ESTÁ AQUI REVISARLO
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownPerfil">
+                <a className="dropdown-item" href="#">Mi Perfil</a>
+                <a className="dropdown-item" href="#" onClick={logout}>Cerrar sesión</a>
+            </div>
+        </li>
+    )
+}
 
-    api.post("logout", "").then(
+const useLogout = () => {
+    let history = useHistory();
+
+    return useCallback(() => api.post("logout", "").then( //USECALLBACK ES UN HOOK DE REACT
         (data) => {
-            // token.remove();
+            token.remove();
             history.push('/login');
         },
         (error) => {
-            // token.remove();
+            token.remove();
             history.push('/login');
         }
-    );
+    ), [history]); //ESTO LO PASAMOS COMO PARAMETRO PARA QUE EN EL CALLBACK SE PUEDA UTILIZAR
 }
 
 export class NavBar extends Component {
-    
+
     render() {
         return (
             <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -49,7 +55,7 @@ export class NavBar extends Component {
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav ml-auto">
                         {
-                            token.isValid() ? logueado : noLogueado
+                            token.isValid() ? <Logueado /> : noLogueado
                         }
                     </ul>
                 </div>
@@ -59,3 +65,4 @@ export class NavBar extends Component {
 }
 
 export default NavBar
+
