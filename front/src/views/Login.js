@@ -3,7 +3,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import token from '../services/token'
 import api from '../services/api.js'
 import swal from '../services/swal.js'
-import Error from './partials/Error.js'
+import Error from '../components/partials/Error.js'
 
 export class Login extends Component {
 

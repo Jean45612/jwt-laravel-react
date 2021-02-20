@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import api from '../services/api.js'
 import swal from '../services/swal.js'
 import SimpleReactValidator from 'simple-react-validator';
-import Error from './partials/Error.js'
+import Error from '../components/partials/Error.js'
 
 export class Register extends Component {
 

@@ -1,7 +1,7 @@
-import Home from './components/Home.js'
+import Home from './views/Home.js'
 import NavBar from './components/NavBar.js'
-import Login from './components/Login.js'
-import Register from './components/Register.js'
+import Login from './views/Login.js'
+import Register from './views/Register.js'
 
 import {
   BrowserRouter as Router,
