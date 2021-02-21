@@ -35,6 +35,7 @@ export class Login extends Component {
             api.post('login', this.state.form).then(data => {
                 token.setToken(data.access_token, data.user);
                 swal.alerta('Bienvenido', 'success');
+                this.props.setUsuario(data.user);
                 this.props.history.push('/');
             }, error => {
                 if (error.data.errors) {

@@ -13,14 +13,14 @@ const noLogueado = <React.Fragment>
     </li>
 </React.Fragment>;
 
-const Logueado = () => {
-    const logout = useLogout()
+const Logueado = (props) => {
+    const logout = useLogout(props)
 
     return (
         <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" role="button" id="dropdownPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {token.getUser().email}
-          </a>
+                {props.name}
+            </a>
 
             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownPerfil">
                 <a className="dropdown-item" href="#">Mi Perfil</a>
@@ -30,22 +30,27 @@ const Logueado = () => {
     )
 }
 
-const useLogout = () => {
+const useLogout = (props) => {
     let history = useHistory();
 
     return useCallback(() => api.post("logout", "").then( //USECALLBACK ES UN HOOK DE REACT
         (data) => {
             token.remove();
+            props.setUsuario(null);
             history.push('/login');
         },
         (error) => {
             token.remove();
+            props.setUsuario(null);
             history.push('/login');
         }
     ), [history]); //ESTO LO PASAMOS COMO PARAMETRO PARA QUE EN EL CALLBACK SE PUEDA UTILIZAR
 }
 
 export class NavBar extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
@@ -55,7 +60,7 @@ export class NavBar extends Component {
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav ml-auto">
                         {
-                            token.isValid() ? <Logueado /> : noLogueado
+                            this.props.usuario ? <Logueado name={this.props.usuario.email} setUsuario={this.props.setUsuario} /> : noLogueado
                         }
                     </ul>
                 </div>
