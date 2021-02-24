@@ -17,7 +17,7 @@ export default {
         const token = this.getToken();
 
         var iss = {
-            login: process.env.REACT_APP_API_URL + 'login', //EN ARCHIVOS .JS SE ACCEDE A LAS VARIABLES GLOBALES DE ESTA FORMA
+            login: process.env.REACT_APP_API_URL + 'login',
             register: process.env.REACT_APP_API_URL + 'register',
             refresh: process.env.REACT_APP_API_URL + 'refresh'
         };
