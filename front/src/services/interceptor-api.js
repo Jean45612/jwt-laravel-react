@@ -1,9 +1,7 @@
 import axios from "axios";
 import Token from "./token.js";
 import swal from "./swal.js";
-import {
-    Redirect
-} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 //INTERCEPTOR REQUEST
 
@@ -32,14 +30,19 @@ axios.interceptors.response.use((response) => {
     return response
 }, function (error) {
 
+    // let history = useHistory();
+
     if (error.response.status == 401 && error.response.data.message == "Token has expired") {//SI EL ERROR ES POR TOKEN
         return refreshToken(error);
     }
 
     if (error.response.data.message == "Token has expired and can no longer be refreshed") {
+        console.log('entre')
         swal.alerta("La sesión ha expirado", "warning");
         Token.remove();
-        <Redirect to='/login' />
+        setTimeout(function () {
+            window.location.href = '/login';
+        }, 1500);
     }
 
     if ( //SI ES QUE EL ERROR ES DE TIPO BLOB

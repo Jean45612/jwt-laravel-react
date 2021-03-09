@@ -31,10 +31,11 @@ function App() {
     }
   }, []) //AGREGAMOS ESTE ARRAY VACIO PARA QUE EL USE EFECT SOLO SE EJECUTE AL CREARSE EL COMPONENTE
 
+  //DENTRO DEL SWITCH SE PONEN TODAS LAS RUTAS DINAMICAS
   return (
     <Router>
       <NavBar usuario={usuario} setUsuario={setUsuario} />
-      <Switch>
+      <Switch> 
         <AfterLogin path="/" exact component={Home} />
 
         <BeforeLogin path="/login" component={(props) => (
